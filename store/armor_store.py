@@ -1,5 +1,5 @@
 from characters.player import player_instance
-
+from characters.armor import leather_armor, plate_armor, magic_robes 
 armor_type = ['Leather Armor', 'Plate Armor', 'Magic Robes']
 
 def armor():
@@ -7,26 +7,29 @@ def armor():
     print(f'Armor available: {armor_type}')
     buy_armor = input('Do you want to buy an armor? (y/n)')
     if buy_armor == 'y':
-        buy_armor_type = input('Which one do you want to buy?\n 1- Leather Armor(4 Defense)(Cost 40)\n 2- Plate Armor(10 Defense)(Cost 60)\n 3- Magic Robes(3 Defense)(Cost 50)')
+        buy_armor_type = input(f'Which one do you want to buy?\n 1- {leather_armor.name} (Defense: {leather_armor.defense}) (Cost: {leather_armor.cost})\n 2- {plate_armor.name} (Defense: {plate_armor.defense}) (Cost: {plate_armor.cost})\n 3- {magic_robes.name} (Defense: {magic_robes.defense}) (Cost: {magic_robes.cost})\n')
         if buy_armor_type == '1':
-            if player_instance.gold <= 40:
+            if player_instance.gold < leather_armor.cost:
                 print('You dont have enough gold')
+                armor()
             else:
-                print('You bought Leather Armor for 40 gold')
-                player_instance.gold -= 40
+                print(f'You bought {leather_armor.name} for {leather_armor.cost} gold')
+                player_instance.gold -= leather_armor.cost
 
         if buy_armor_type == '2':
-            if player_instance.gold <= 60:
+            if player_instance.gold < plate_armor.cost:
                 print('You dont have enough gold')
+                armor()
             else:
-                print('You bought Plate Armor for 60 gold')
-                player_instance.gold -= 60
+                print(f'You bought {plate_armor.name} for {plate_armor.cost} gold')
+                player_instance.gold -= plate_armor.cost
 
         if buy_armor_type == '3':
-            if player_instance.gold <= 50:
+            if player_instance.gold < magic_robes.cost:
                 print('You dont have enough gold')
+                armor()
             else:
-                print('You bought Magic Robes for 50 gold')
-                player_instance.gold -= 50
+                print(f'You bought {magic_robes.name} for {magic_robes.cost} gold')
+                player_instance.gold -= magic_robes.cost
         
 

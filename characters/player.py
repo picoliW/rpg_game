@@ -12,5 +12,5 @@ class Player:
     def __str__(self):
         return f"{self.name} - Health: {self.health}, Damage per attack: {self.damage}, Mana {self.mana}, Gold {self.gold}"
 
-player_instance = Player("player_name", 100, 30, 50, 500)
+player_instance = Player("player_name", 100, 20, 50, 50)
 
