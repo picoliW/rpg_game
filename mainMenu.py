@@ -2,6 +2,7 @@ from characters.player import player_instance
 from fight import fight
 from characters.practice import practice
 from characters.options import options
+from store.armor_store import armor
 
 def menu():
     print('-------------------Welcome to the RPG--------------------')
@@ -10,7 +11,7 @@ def menu():
 
     print("Your character stats: ", player_instance)
 
-    player_choose = input('What you want to do? \n 1- fight \n 2- practice \n 3- options \n')
+    player_choose = input('What you want to do? \n 1- Fight \n 2- Practice \n 3- Store \n 4- Options \n')
    
     match player_choose:
         case '1':
@@ -18,6 +19,8 @@ def menu():
         case '2':
             practice()
         case '3':
+            armor()
+        case '4':
             options()
     
 
