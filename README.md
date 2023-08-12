@@ -1,2 +1,2 @@
 # A simple rpg game
-i used chatGPT to make the minigames
+I used chatGPT a little bit to make the minigames
