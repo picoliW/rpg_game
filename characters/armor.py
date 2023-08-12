@@ -8,6 +8,6 @@ class Armor:
         print(f"Applying {self.name} to {target.name}!")
         target.defense += self.defense
 
-leather_armor = Armor("Leather Armor", 4, 40)
-plate_armor = Armor("Plate Armor", 10, 60)
-magic_robes = Armor("Magic Robes", 3, 50)
+leather_armor = Armor("Leather Armor", 25, 40)
+plate_armor = Armor("Plate Armor", 40, 60)
+magic_robes = Armor("Magic Robes", 20, 50)

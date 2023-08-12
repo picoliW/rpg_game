@@ -4,15 +4,17 @@ from characters.practice import practice
 from characters.options import options
 from store.store import store
 
-def menu():
+def initialize_game():
     print('-------------------Welcome to the RPG--------------------')
     print('You are a simple villager born in distant lands who knows a few spells.')
     print('Fight the monsters and kill the demon lord to save your world.')
     player_name = input('Please type your Hero name: ')
     player_instance.name = player_name
 
-    print("Your Hero stats: ", player_instance)
+    print("\nYour Hero stats: ", player_instance)
 
+def menu():
+    print('-------------------Main Menu--------------------')
     player_choose = input('What you want to do? \n 1- Fight \n 2- Practice \n 3- Store \n 4- Options \n')
    
     match player_choose:
@@ -24,6 +26,7 @@ def menu():
             store()
         case '4':
             options()
-    
 
-menu()
+if __name__ == "__main__":
+    initialize_game()
+    menu()

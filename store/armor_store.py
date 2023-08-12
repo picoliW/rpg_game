@@ -15,6 +15,9 @@ def armor():
             else:
                 print(f'You bought {leather_armor.name} for {leather_armor.cost} gold')
                 player_instance.gold -= leather_armor.cost
+                player_instance.health += leather_armor.defense
+                from mainMenu import menu
+                menu()
 
         if buy_armor_type == '2':
             if player_instance.gold < plate_armor.cost:
@@ -23,6 +26,9 @@ def armor():
             else:
                 print(f'You bought {plate_armor.name} for {plate_armor.cost} gold')
                 player_instance.gold -= plate_armor.cost
+                player_instance.health += plate_armor.defense
+                from mainMenu import menu
+                menu()
 
         if buy_armor_type == '3':
             if player_instance.gold < magic_robes.cost:
@@ -31,5 +37,8 @@ def armor():
             else:
                 print(f'You bought {magic_robes.name} for {magic_robes.cost} gold')
                 player_instance.gold -= magic_robes.cost
+                player_instance.health += magic_robes.defense
+                from mainMenu import menu
+                menu()
         
 

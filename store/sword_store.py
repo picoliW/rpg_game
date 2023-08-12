@@ -1,11 +1,7 @@
 from characters.player import player_instance
 from characters.sword import wooden_sword, iron_sword, crystal_sword
 
-#Sword("Wood Sword", 30, 50)
-#iron_sword = Sword("Iron Sword", 40, 60)
-#crystal_sword = Sword("Crystal Sword", 50, 70)
-
-swords_type = ['Wooden Sword', 'Iron Sword', 'Crystal Sword']
+swords_type = [f'Wooden Sword', 'Iron Sword', 'Crystal Sword']
 
 def sword():
     print(f'your gold {player_instance.gold}')
@@ -20,6 +16,9 @@ def sword():
             else:
                 print(f'You bought {wooden_sword.name} for {wooden_sword.cost} gold')
                 player_instance.gold -= wooden_sword.cost
+                player_instance.damage += wooden_sword.damage
+                from mainMenu import menu
+                menu()
 
         if buy_sword_type == '2':
             if player_instance.gold < iron_sword.cost:
@@ -28,6 +27,9 @@ def sword():
             else:
                 print(f'You bought {iron_sword.name} for {iron_sword.cost} gold')
                 player_instance.gold -= iron_sword.cost
+                player_instance.damage += wooden_sword.damage
+                from mainMenu import menu
+                menu()
 
         if buy_sword_type == '3':
             if player_instance.gold < crystal_sword.cost:
@@ -36,5 +38,8 @@ def sword():
             else:
                 print(f'You bought {crystal_sword.name} for {crystal_sword.cost} gold')
                 player_instance.gold -= crystal_sword.cost
+                player_instance.damage += wooden_sword.damage
+                from mainMenu import menu
+                menu()
         
         

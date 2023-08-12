@@ -5,7 +5,9 @@ def options():
     if option_select == '1':
         new_name = input('Type your new name: ')
         player_instance.name = new_name
-        print(f'Name sucessfully changed your new name{player_instance.name}')
+        print(f'Name sucessfully changed to: {player_instance.name}')
+        from mainMenu import menu
+        menu()
 
 
 
