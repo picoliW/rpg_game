@@ -5,7 +5,7 @@ from store.potion_store import potion
 
 
 def store():
-    print('Welcome to the store!')
+    print('-------------------Store--------------------')
     store_selection = input('Select the section:\n 1- Armor store \n 2- Sword store \n 3- Potion Store \n 4- Go back to menu\n')
     
     match store_selection:

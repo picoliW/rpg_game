@@ -5,7 +5,8 @@ from characters.player import player_instance
 def practice():
 
     while True:
-        practice_stat = input('What do you want to practice? \n 1- health \n 2- damage \n 3- intelligence(Mana) \n 4- Back to Main Menu\n')
+        print('-------------------Practice--------------------')
+        practice_stat = input('What do you want to practice? \n 1- Vigor(Health) \n 2- Strength(Damage) \n 3- Intelligence(Mana) \n 4- Back to Main Menu\n')
         if practice_stat == '1':
                 final_score = mouseClickMinigame()
                 player_instance.health += final_score

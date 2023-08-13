@@ -3,6 +3,7 @@ from characters.armor import leather_armor, plate_armor, magic_robes
 armor_type = ['Leather Armor', 'Plate Armor', 'Magic Robes']
 
 def armor():
+    print('-------------------Armor Store--------------------')
     print(f'your gold {player_instance.gold}')
     print(f'Armor available: {armor_type}')
     buy_armor = input('Do you want to buy an armor? (y/n)')

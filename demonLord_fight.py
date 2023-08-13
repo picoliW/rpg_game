@@ -5,6 +5,7 @@ from characters.magic import fireball, thunderbolt, ice_spike
 
 def demonLord_fight():
     while True:
+        print('-------------------Demon Lord Fight--------------------')
         while player_instance.health > 0:
             print("Player:", player_instance)
             print("Demon Lord:", demonlord_instance)

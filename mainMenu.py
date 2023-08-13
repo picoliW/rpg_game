@@ -15,7 +15,7 @@ def initialize_game():
 
 def menu():
     print('-------------------Main Menu--------------------')
-    player_choose = input('What you want to do? \n 1- Fight \n 2- Practice \n 3- Store \n 4- Options \n')
+    player_choose = input('What you want to do? \n 1- Fight \n 2- Practice \n 3- Store \n 4- Show Hero Stats \n 5- Options \n')
    
     match player_choose:
         case '1':
@@ -25,6 +25,9 @@ def menu():
         case '3':
             store()
         case '4':
+            print(player_instance)
+            menu()
+        case '5':
             options()
 
 if __name__ == "__main__":

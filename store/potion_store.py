@@ -4,10 +4,11 @@ from characters.potion import heal_potion, bigHeal_potion, damageBonus_potion, b
 potion_type = ['Heal Potion', 'Big Heal Potion', 'Damage Bonus Potion', 'Big Bonus Damage Potion']
 
 def potion():
+    print('-------------------Potion Store--------------------')
     print(f'your gold {player_instance.gold}')
     print(f'Potions available: {potion_type}')
-    buy_potion = input('Do you want to buy an potion? (y/n)')
-    if buy_potion == 'y':
+    buy_potion = input('Do you want to buy a potion? (y/n)')
+    if buy_potion.lower() == 'y':
         buy_potion_type = input(f'Which one do you want to buy?\n 1- {heal_potion.name} (Heal: {heal_potion.heal}) (Cost: {heal_potion.cost})\n 2- {bigHeal_potion.name} (Heal: {bigHeal_potion.heal}) (Cost: {bigHeal_potion.cost})\n 3- {damageBonus_potion.name} (Damage Bonus: {damageBonus_potion.damageBonus}) (Cost: {damageBonus_potion.cost})\n 4- {bigDamageBonus_potion.name} (Damage Bonus: {bigDamageBonus_potion.damageBonus}) (Cost: {bigDamageBonus_potion.cost})\n')
         if buy_potion_type == '1':
             if player_instance.gold < heal_potion.cost:

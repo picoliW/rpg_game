@@ -7,6 +7,7 @@ from characters.armor import leather_armor, plate_armor, magic_robes
 
 def fight():
     while True:
+        print('-------------------Fight--------------------')
         print("Player:", player_instance)
         print("Goblin:", goblin_instance)
         print("Dragon:", dragon_instance)
@@ -114,5 +115,6 @@ def fight():
                  demonLord_fight()
  
             case "4":
-                break 
+                from mainMenu import menu
+                menu()
 

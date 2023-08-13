@@ -4,9 +4,10 @@ from characters.sword import wooden_sword, iron_sword, crystal_sword
 swords_type = [f'Wooden Sword', 'Iron Sword', 'Crystal Sword']
 
 def sword():
+    print('-------------------Sword Store--------------------')
     print(f'your gold {player_instance.gold}')
     print(f'Swords available: {swords_type}')
-    buy_sword = input('Do you want to buy an sword? (y/n)')
+    buy_sword = input('Do you want to buy a sword? (y/n)')
     if buy_sword == 'y':
         buy_sword_type = input(f'Which one do you want to buy?\n 1- {wooden_sword.name} (Damage: {wooden_sword.damage}) (Cost: {wooden_sword.cost})\n 2- {iron_sword.name} (Damage: {iron_sword.damage}) (Cost: {iron_sword.cost})\n 3- {crystal_sword.name} (Damage: {crystal_sword.damage}) (Cost: {crystal_sword.cost})\n')
         if buy_sword_type == '1':
