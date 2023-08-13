@@ -1,5 +1,5 @@
-from characters.mouseClickMinigame import mouseClickMinigame
-from characters.keyboardMinigame import keyboardMinigame
+from minigames.mouseClickMinigame import mouseClickMinigame
+from minigames.keyboardMinigame import keyboardMinigame
 from characters.player import player_instance
 
 def practice():
@@ -15,7 +15,7 @@ def practice():
         if practice_stat == '2':
                 final_score = keyboardMinigame()
                 player_instance.damage += final_score
-                print(f"Your life increased to: {player_instance.damage}")
+                print(f"Your damage increased to: {player_instance.damage}")
                 
         if practice_stat == '3':
             practice_task = input('What is the capital of australia? ')

@@ -10,4 +10,4 @@ class MagicSkill:
 
 fireball = MagicSkill("Fireball", 20, 10)
 thunderbolt = MagicSkill("Thunderbolt", 25, 13)
-ice_spike = MagicSkill("Ice Spike", 15, 15)
+ice_spike = MagicSkill("Ice Spike", 18, 15)

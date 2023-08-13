@@ -3,7 +3,9 @@ from enemies.goblin import goblin_instance
 from enemies.dragon import dragon_instance
 from demonLord_fight import demonLord_fight
 from characters.magic import fireball, thunderbolt, ice_spike
-from characters.armor import leather_armor, plate_armor, magic_robes 
+from messagess.goblin_killed import goblin_killed
+from messagess.dragon_killed import dragon_killed
+from messagess.game_over import game_over
 
 def fight():
     while True:
@@ -12,21 +14,17 @@ def fight():
         print("Goblin:", goblin_instance)
         print("Dragon:", dragon_instance)
 
-        action = input("Enter an action \n1- Sword Attack \n 2- Magic attack \n 3- Challenge the Demon Lord \n 4- Run \n ")
+        action = input("Enter an action \n 1- Sword Attack \n 2- Magic attack \n 3- Challenge the Demon Lord \n 4- Run \n ")
         match action:
             case "1":
-                player_instance.attack(goblin_instance)
-                player_instance.attack(dragon_instance)
-                goblin_instance.attack(player_instance)
-                dragon_instance.attack(player_instance)
-                if player_instance.health <= 0:
-                    print('Game Over')
-                    break
-                if goblin_instance.health <= 0:
-                    player_instance.gold += 20
-                    print('You killed a goblin! +20 gold')
-                    goblin_instance.health = 50
-                    fight()
+                goblin_instance.receive_damage(player_instance.damage)
+                goblin_killed()
+                dragon_instance.receive_damage(player_instance.damage)
+                dragon_killed()
+                player_instance.receive_damage(goblin_instance.damage)
+                player_instance.receive_damage(dragon_instance.damage)
+                game_over()
+                
             case "2":
                 print("Choose a magic skill:")
                 print(f"1- {fireball.name} (Damage: {fireball.damage}) (Mana cost: {fireball.manacost})")
@@ -42,23 +40,16 @@ def fight():
                         magic_target = input('what target? (goblin/dragon)')
                         player_instance.mana -= fireball.manacost
                         if magic_target == 'goblin':
-                            fireball.cast(goblin_instance)
-                            goblin_instance.attack(player_instance)
-                            dragon_instance.attack(player_instance)
-                            if goblin_instance.health <= 0:
-                                player_instance.gold += 20
-                                print('You killed a goblin! +20 gold')
-                                goblin_instance.health = 50
-                                fight()
+                            goblin_instance.receive_damage(fireball.damage)
+                            goblin_killed()
+                            player_instance.receive_damage(goblin_instance.damage)
+                            player_instance.receive_damage(dragon_instance.damage)
+                            game_over()
                         elif magic_target == 'dragon':
-                            fireball.cast(dragon_instance)
-                            goblin_instance.attack(player_instance)
-                            dragon_instance.attack(player_instance)
-                            if dragon_instance.health <= 0:
-                                player_instance.gold += 40
-                                print('You killed a dragon! +40 gold')
-                                dragon_instance.health = 200
-                                fight()
+                            dragon_instance.receive_damage(fireball.damage)
+                            player_instance.receive_damage(goblin_instance.damage)
+                            player_instance.receive_damage(dragon_instance.damage)
+                            dragon_killed()
 
                 elif magic_choice == '2':
                     if player_instance.mana < thunderbolt.manacost:
@@ -68,23 +59,17 @@ def fight():
                         player_instance.mana -= thunderbolt.manacost
                         magic_target = input('what target? (goblin/dragon)')
                         if magic_target == 'goblin':
-                            thunderbolt.cast(goblin_instance)
-                            goblin_instance.attack(player_instance)
-                            dragon_instance.attack(player_instance)
-                            if goblin_instance.health <= 0:
-                                player_instance.gold += 20
-                                print('You killed a goblin! +20 gold')
-                                goblin_instance.health = 50
-                                fight()
+                            goblin_instance.receive_damage(thunderbolt.damage)
+                            goblin_killed()
+                            player_instance.receive_damage(goblin_instance.damage)
+                            player_instance.receive_damage(dragon_instance.damage)
+                            game_over()
                         elif magic_target == 'dragon':
-                            thunderbolt.cast(dragon_instance)
-                            goblin_instance.attack(player_instance)
-                            dragon_instance.attack(player_instance)
-                            if dragon_instance.health <= 0:
-                                player_instance.gold += 40
-                                print('You killed a dragon! +40 gold')
-                                dragon_instance.health = 200
-                                fight()
+                            dragon_instance.receive_damage(thunderbolt.damage)
+                            dragon_killed()
+                            player_instance.receive_damage(goblin_instance.damage)
+                            player_instance.receive_damage(dragon_instance.damage)
+                            game_over()
 
                 elif magic_choice == '3':
                     if player_instance.mana < ice_spike.manacost:
@@ -92,20 +77,13 @@ def fight():
                         fight()
                     else:
                         player_instance.mana -= ice_spike.manacost
-                        ice_spike.cast(goblin_instance)
-                        ice_spike.cast(dragon_instance)
-                        goblin_instance.attack(player_instance)
-                        dragon_instance.attack(player_instance)
-                        if goblin_instance.health <= 0:
-                            player_instance.gold += 20
-                            print('You killed a goblin! +20 gold')
-                            goblin_instance.health = 50
-                            fight()
-                        if dragon_instance.health <= 0:
-                            player_instance.gold += 40
-                            print('You killed a dragon! +40 gold')
-                            dragon_instance.health = 200
-                            fight()
+                        goblin_instance.receive_damage(ice_spike.damage)
+                        goblin_killed()
+                        dragon_instance.receive_damage(ice_spike.damage)
+                        dragon_killed()
+                        player_instance.receive_damage(goblin_instance.damage)
+                        player_instance.receive_damage(dragon_instance.damage)
+                        game_over()                      
                               
                 else:
                     print("Invalid choice.")

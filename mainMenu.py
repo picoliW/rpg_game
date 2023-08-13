@@ -29,6 +29,10 @@ def menu():
             menu()
         case '5':
             options()
+        case _:
+            print('Invalid Option')
+            menu()
+
 
 if __name__ == "__main__":
     initialize_game()

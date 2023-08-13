@@ -1,6 +1,8 @@
 from characters.player import player_instance
 from enemies.demon_lord import demonlord_instance
 from characters.magic import fireball, thunderbolt, ice_spike
+from messagess.game_over import game_over
+from messagess.demonlord_killed import demonlord_killed
 
 
 def demonLord_fight():
@@ -11,15 +13,15 @@ def demonLord_fight():
             print("Demon Lord:", demonlord_instance)
             
 
-            action = input("Enter an action \n1- Sword Attack \n 2- Magic attack \n 3- Run \n ")
+            action = input("Enter an action \n 1- Sword Attack \n 2- Magic attack \n 3- Run \n ")
             match action:
                 case "1":
-                    player_instance.attack(demonlord_instance)
-                    demonlord_instance.attack(player_instance)
-                    if demonlord_instance.health <= 0:
-                        player_instance.gold += 1000
-                        print('You killed the Demon Lord! +1000 gold')
-                        demonLord_fight()
+                    demonlord_instance.receive_damage(player_instance.damage)
+                    demonlord_killed()
+                    player_instance.receive_damage(demonlord_instance.damage)
+                    game_over()
+                    
+                          
                 case "2":
                     print("Choose a magic skill:")
                     print(f"1- {fireball.name} (Damage: {fireball.damage}) (Mana cost: {fireball.manacost})")
@@ -33,12 +35,10 @@ def demonLord_fight():
                             demonLord_fight()
                         else:
                             player_instance.mana -= fireball.manacost
-                            fireball.cast(demonlord_instance)
-                            demonlord_instance.attack(player_instance)
-                            if demonlord_instance.health <= 0:
-                                    player_instance.gold += 1000
-                                    print('You killed the Demon Lord! +1000 gold')
-                                    demonLord_fight()
+                            demonlord_instance.receive_damage(fireball.damage)
+                            demonlord_killed()
+                            player_instance.receive_damage(demonlord_instance.damage)
+                            game_over()
 
                     elif magic_choice == '2':
                         if player_instance.mana < thunderbolt.manacost:
@@ -46,28 +46,27 @@ def demonLord_fight():
                             demonLord_fight()
                         else:
                             player_instance.mana -= thunderbolt.manacost
-                            thunderbolt.cast(demonlord_instance)
-                            demonlord_instance.attack(player_instance)
-                            if demonlord_instance.health <= 0:
-                                    player_instance.gold += 1000
-                                    print('You killed the Demon Lord! +1000 gold')
-                                    demonLord_fight()
+                            demonlord_instance.receive_damage(thunderbolt.damage)
+                            demonlord_killed()
+                            player_instance.receive_damage(demonlord_instance.damage)
+                            game_over()
 
                     elif magic_choice == '3':
                         if player_instance.mana < ice_spike.manacost:
                             print('You dont have enough mana')
                             demonLord_fight()
                         else:
-                            player_instance.mana -= ice_spike.manacost
-                            ice_spike.cast(demonlord_instance)
+                            demonlord_instance.receive_damage(ice_spike.damage)
+                            demonlord_killed()
+                            player_instance.receive_damage(demonlord_instance.damage)
+                            game_over()
                             demonlord_instance.attack(player_instance)
-                            if demonlord_instance.health <= 0:
-                                player_instance.gold += 1000
-                                print('You killed the Demon Lord +1000 gold')
-                                demonLord_fight()                            
-                    else:
-                        print("Invalid choice.")
-                        demonLord_fight()
+                case '3':
+                    from mainMenu import menu
+                    menu()                        
+                case _:
+                    print("Invalid choice.")
+                    demonLord_fight()
 
         else:                       
             print('Game Over')
